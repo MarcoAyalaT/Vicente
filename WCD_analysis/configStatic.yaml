@@ -1,0 +1,22 @@
+MESH:
+  CharacteristicLengthMin: 50.0 # [mm]
+  CharacteristicLengthMax: 200.0 # [mm]
+
+FACES_CONSTRAINT_PRESSURE:
+  hex: ["Face9", "Face10", "Face11", "Face14", "Face15", "Face16", "Face12"]
+  cir: ["Face4", "Face6"]
+  sqr: ["Face7", "Face10", "Face11", "Face12", "Face8"]
+
+FACE_CONSTRAINT_FIXED:
+  hex: "Face4"
+  cir: "Face3"
+  sqr: "Face5"
+
+CONSTANTS:
+  waterDensity: 998.2 # [kg/m^3]
+  gravityConstant: 9.80665 # [m/s^2]
+
+CONFIG:
+  useExistingFiles: no
+  useExistingMesh: yes
+  runFirstOnly: yes

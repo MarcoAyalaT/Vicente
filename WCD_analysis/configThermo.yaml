@@ -1,0 +1,28 @@
+TIME:
+  timeEnd: 18000 # [s] (5 hrs)
+  timeStep: 3600 # [s] (1 hr)
+
+TEMPERATURE:
+  ambientTemp: 300.15 # [K]
+
+HEAT_FLUX:
+  solarHeatFlux: 1000.0 # [W/m^2]
+
+MESH:
+  CharacteristicLengthMin: 50.0 # [mm]
+  CharacteristicLengthMax: 200.0 # [mm]
+
+FACE_IRRADIATED:
+  hex: "Face5"
+  cir: "FaceX"
+  sqr: "FaceX"
+
+FACE_CONSTRAINT_FIXED:
+  hex: "Face4"
+  cir: "Face3"
+  sqr: "Face5"
+
+CONFIG:
+  useExistingFiles: no
+  useExistingMesh: yes
+  runFirstOnly: no
