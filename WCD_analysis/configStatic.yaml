@@ -1,6 +1,6 @@
 MESH:
-  CharacteristicLengthMin: 50.0 # [mm]
-  CharacteristicLengthMax: 200.0 # [mm]
+  CharacteristicLengthMin: 10.0 # [mm]
+  CharacteristicLengthMax: 50.0 # [mm]
 
 FACES_CONSTRAINT_PRESSURE:
   hex: ["Face9", "Face10", "Face11", "Face14", "Face15", "Face16", "Face12"]
@@ -18,5 +18,5 @@ CONSTANTS:
 
 CONFIG:
   useExistingFiles: no
-  useExistingMesh: yes
-  runFirstOnly: yes
+  useExistingMesh: no
+  runFirstOnly: no

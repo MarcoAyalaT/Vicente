@@ -76,7 +76,7 @@ def CirWCD(width, wall_thickness):
 
 #################################################################################################
 
-WIDTH = [3e3, 3.5e3, 4e3, 4.5e3, 5e3, 5.5e3] # [mm]
+WIDTH = [1.25e3] # [mm]
 
 if __name__ == '__main__':
 
@@ -88,28 +88,26 @@ if __name__ == '__main__':
 		
 		#sqrWCD = SqrWCD(width, 12)
 		hexWCD = HexWCD(width, 12)
-		#cirWCD = CirWCD(width, 12)
+		cirWCD = CirWCD(width, 12)
 		
 		#obj_sqr = doc.addObject('Part::Feature', 'SqrWCD')
 		#obj_sqr.Shape = sqrWCD
 		obj_hex = doc.addObject('Part::Feature', 'HexWCD')
 		obj_hex.Shape = hexWCD
-		#obj_cir = doc.addObject('Part::Feature', 'CirWCD')
-		#obj_cir.Shape = cirWCD
+		obj_cir = doc.addObject('Part::Feature', 'CirWCD')
+		obj_cir.Shape = cirWCD
 
 		doc.recompute()
 
 		#output_path_sqr = f'files/sqr_{width}/sqr_{width}.step'
 		output_path_hex = f'files/hex_{width}/hex_{width}.step'
-		#output_path_cir = f'files/cir_{width}/cir_{width}.step'
-
-		print(output_path_hex)
+		output_path_cir = f'files/cir_{width}/cir_{width}.step'
 
 		#Part.export([obj_sqr], output_path_sqr)
 		Part.export([obj_hex], output_path_hex)
-		#Part.export([obj_cir], output_path_cir)
+		Part.export([obj_cir], output_path_cir)
 
 		#print(f'Squared-base Cherenkov Detector exported as   : {output_path_sqr}')
 		print(f'Hexagonal-base Cherenkov Detector exported as : {output_path_hex}')
-		#print(f'Circular-base Cherenkov Detector exported as  : {output_path_cir}')
+		print(f'Circular-base Cherenkov Detector exported as  : {output_path_cir}')
 		print('#'*76)

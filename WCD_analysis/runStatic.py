@@ -23,8 +23,8 @@ with open('configStatic.yaml', 'r') as file:
 	data = yaml.safe_load(file)
 	config = DotMap(data)
 
-WIDTH = [3000, 3500, 4000, 4500, 5000, 5500]
-BASE = ['hex']
+WIDTH = [int(1.25e3)]
+BASE = ['hex', 'cir']
 
 use_old_FCStd = config.CONFIG.useExistingFiles
 use_old_mesh = config.CONFIG.useExistingMesh
@@ -93,7 +93,7 @@ for base in BASE:
 		pressure = config.CONSTANTS.waterDensity * config.CONSTANTS.gravityConstant * height_meter
 		pressure_constraint = ObjectsFem.makeConstraintPressure(doc)
 		pressure_constraint.References = [(part, wall) for wall in INNER_WALLS]
-		pressure_constraint.Pressure = pressure * 1e-6
+		pressure_constraint.Pressure = pressure * 1e-3
 		pressure_constraint.Reversed = False
 		analysis_obj.addObject(pressure_constraint)
 
@@ -128,8 +128,8 @@ for base in BASE:
 
 		else:
 			femmesh_obj.CharacteristicLengthMin = config.MESH.CharacteristicLengthMin
-			femmesh_obj.CharacteristicLengthMax = config.MESH,CharacteristicLengthMax
-			femmesh_obj.Part = part
+			femmesh_obj.CharacteristicLengthMax = config.MESH.CharacteristicLengthMax
+			femmesh_obj.Shape = part
 			gmsh_mesh = GmshTools(femmesh_obj, analysis=analysis_obj)
 			error = gmsh_mesh.create_mesh()
 			if error:

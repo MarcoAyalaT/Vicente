@@ -6,15 +6,15 @@ TEMPERATURE:
   ambientTemp: 300.15 # [K]
 
 HEAT_FLUX:
-  solarHeatFlux: 1000.0 # [W/m^2]
+  solarHeatFlux: 1100.0 # [W/m^2]
 
 MESH:
-  CharacteristicLengthMin: 50.0 # [mm]
-  CharacteristicLengthMax: 200.0 # [mm]
+  CharacteristicLengthMin: 10.0 # [mm]
+  CharacteristicLengthMax: 500.0 # [mm]
 
 FACE_IRRADIATED:
   hex: "Face5"
-  cir: "FaceX"
+  cir: "Face2"
   sqr: "FaceX"
 
 FACE_CONSTRAINT_FIXED:
@@ -24,5 +24,5 @@ FACE_CONSTRAINT_FIXED:
 
 CONFIG:
   useExistingFiles: no
-  useExistingMesh: yes
-  runFirstOnly: no
+  useExistingMesh: no
+  runFirstOnly: yes

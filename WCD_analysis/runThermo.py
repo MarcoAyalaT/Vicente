@@ -23,8 +23,8 @@ with open('configThermo.yaml', 'r') as file:
 	data = yaml.safe_load(file)
 	config = DotMap(data)
 
-WIDTH = [3000, 3500, 4000, 4500, 5000, 5500]
-BASE = ['hex']
+WIDTH = [int(1.25e3)]
+BASE = ['hex', 'cir']
 
 use_old_FCStd = config.CONFIG.useExistingFiles
 use_old_mesh = config.CONFIG.useExistingMesh
@@ -104,6 +104,8 @@ for base in BASE:
 		doc.recompute()
 
 		solver_obj = ObjectsFem.makeSolverCalculiXCcxTools(doc)
+		solver_obj.BeamShellResultOutput3D = True
+		solver_obj.WorkingDir = f'/home/vicente/Desktop/hodoscopeWCD/files/{doc_name}'
 		solver_obj.AnalysisType = 'thermomech'
 		solver_obj.ThermoMechSteadyState = False
 		solver_obj.IterationsUserDefinedTimeStepLength = True
@@ -113,7 +115,7 @@ for base in BASE:
 		solver_obj.TimeMinimumStep = config.TIME.timeStep
 		
 		analysis_obj.addObject(solver_obj)
-
+		
 		doc.recompute()
 
 		########################################################################### GENERATING FEMMESH ####
@@ -131,7 +133,7 @@ for base in BASE:
 		else:
 			femmesh_obj.CharacteristicLengthMin = config.MESH.CharacteristicLengthMin
 			femmesh_obj.CharacteristicLengthMax = config.MESH.CharacteristicLengthMax
-			femmesh_obj.FemMesh.Part = part
+			femmesh_obj.Shape = part
 			gmsh_mesh = GmshTools(femmesh_obj, analysis=analysis_obj)
 			error = gmsh_mesh.create_mesh()
 			if error:
@@ -165,7 +167,7 @@ for base in BASE:
 		end_fea = time.time()
 		print(f'[INFO]: FEA solved in {end_fea-start_fea:.2f} [s]')
 
-		#doc.save()
+		doc.save()
 
 		FreeCAD.closeDocument(doc.Name)
 
